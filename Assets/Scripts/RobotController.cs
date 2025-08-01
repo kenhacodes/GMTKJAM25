@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,6 +13,14 @@ public class RobotController : MonoBehaviour
     public float rotationSpeed = 5.0f;
     public bool player = false;
     public RobotHealth healthBar;
+
+    public bool isInvincible = false;
+    public float invincibleTime = 0.5f;
+
+    public float floorHeight = 0.0f;
+    public float gravityScale = 5.0f;
+
+    public float blockDuration = 0.5f;
 
     public float normalYKnockback = 1.0f;
     private float currentYKnockback;
@@ -26,8 +36,16 @@ public class RobotController : MonoBehaviour
 
     public BoxCollider hurtboxTop;
     public BoxCollider hurtboxLow;
+
     public BoxCollider hitBoxTop;
     public BoxCollider hitBoxLow;
+    public BoxCollider hitBoxUppercut;
+    public BoxCollider hitBoxLeft;
+    public BoxCollider hitBoxRight;
+
+    public Transform tr_key;
+    private float tr_key_currentRotationX = 0f;
+    private Tween keyrotationTween;
 
     public enum Directions
     {
@@ -66,6 +84,14 @@ public class RobotController : MonoBehaviour
 
         hitBoxTop.enabled = false;
         hitBoxLow.enabled = false;
+        hitBoxUppercut.enabled = false;
+        hitBoxLeft.enabled = false;
+        hitBoxRight.enabled = false;
+    }
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(Physics.gravity * (rb.mass * (gravityScale - 1)));
     }
 
     // Update is called once per frame
@@ -79,16 +105,19 @@ public class RobotController : MonoBehaviour
             //Testing 
             if (Input.GetMouseButtonDown(0))
             {
+                RobotKeyRotation();
                 //LookAtEnemy();
-                AttackNormal();
+                JumpFront();
             }
 
             if (Input.GetMouseButtonDown(1))
             {
-                AttackLow();
+                RobotKeyRotation();
+                MoveRobot(Directions.Backwards);
             }
         }
     }
+
 
     // Programmable Actions
 
@@ -119,8 +148,8 @@ public class RobotController : MonoBehaviour
             }
         }
 
-        // TODO Change to current floor height + 0.5f
-        if (tr.position.y < 1.5f) dir.y = 0.33f;
+
+        if (tr.position.y < floorHeight + 1.5f) dir.y = 0.33f;
 
         rb.AddForce(dir * moveImpulse, ForceMode.Impulse);
     }
@@ -134,11 +163,78 @@ public class RobotController : MonoBehaviour
     public void AttackLow()
     {
         MoveRobot(Directions.Forward, 0.5f);
-        StartCoroutine(ChangeYKnockback(1.5f, 1.0f));
+        StartCoroutine(ChangeYKnockback(2.0f, 1.0f));
+        StartCoroutine(ChangeKnockback(normalKnockback + 2.0f, 1.0f));
         StartCoroutine(ActivateHitbox(hitBoxLow, 1.0f));
     }
 
+    public void BlockNormal()
+    {
+        rb.velocity = Vector3.zero;
+        StartCoroutine(DeactivateHurtbox(hurtboxTop, blockDuration));
+    }
+
+    public void BlocKLow()
+    {
+        rb.velocity = Vector3.zero;
+        StartCoroutine(DeactivateHurtbox(hurtboxLow, blockDuration));
+    }
+
+    public void JumpFront()
+    {
+        Vector3 dir;
+        if (tr.position.y < floorHeight + 2.0f)
+        {
+            dir = tr.forward.normalized * moveImpulse;
+            dir.y = 14.0f;
+        }
+        else
+        {
+            dir = tr.forward.normalized * moveImpulse * 0.5f;
+        }
+
+        rb.AddForce(dir, ForceMode.Impulse);
+    }
+
+    public void AttackLeft()
+    {
+        StartCoroutine(ActivateHitbox(hitBoxLeft, 0.5f));
+    }
+
+    public void AttackRight()
+    {
+        StartCoroutine(ActivateHitbox(hitBoxRight, 0.5f));
+    }
+
+    public void AttackUppercut()
+    {
+        StartCoroutine(ChangeYKnockback(10.0f, 0.5f));
+        StartCoroutine(ActivateHitbox(hitBoxUppercut, 0.5f));
+    }
+
+
     // Other functions
+    public void RobotKeyRotation()
+    {
+        if (keyrotationTween != null && keyrotationTween.IsActive())
+        {
+            keyrotationTween.Kill();
+        }
+
+        float startRotationX = tr_key.localEulerAngles.x;
+        float endRotationX = tr_key_currentRotationX + 12.0f;
+        tr_key_currentRotationX = endRotationX;
+
+        keyrotationTween = DOVirtual.Float(startRotationX, endRotationX, 0.3f, value =>
+            {
+                Vector3 euler = tr_key.localEulerAngles;
+                euler.x = value;
+                euler.y = 90.0f;
+                euler.z = 270.0f;
+                tr_key.localEulerAngles = euler;
+            })
+            .SetEase(Ease.OutBack);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -157,6 +253,8 @@ public class RobotController : MonoBehaviour
 
     public void TakeDamage(float damage, float knockbackForce = 5.0f, float knockbackForceY = 1.0f)
     {
+        if (isInvincible) return;
+
         health -= damage;
         health = Mathf.Max(0.0f, health);
 
@@ -181,13 +279,27 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    // Coroutines
+// Coroutines
 
     IEnumerator ActivateHitbox(BoxCollider hitbox, float activeDuration = 1.0f)
     {
         hitbox.enabled = true;
         yield return new WaitForSeconds(activeDuration);
         hitbox.enabled = false;
+    }
+
+    IEnumerator DeactivateHurtbox(BoxCollider hitbox, float activeDuration = 1.0f)
+    {
+        hitbox.enabled = false;
+        yield return new WaitForSeconds(activeDuration);
+        hitbox.enabled = true;
+    }
+
+    IEnumerator ActivateInvincibility()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 
     IEnumerator ChangeYKnockback(float amount, float time)
