@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 2135754929519456291, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
       propertyPath: force
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3071747961077302823, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
@@ -684,17 +684,17 @@ PrefabInstance:
     - target: {fileID: 739021116608308835, guid: 125621a83711bb84aac8b5994301cca0,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 739021116608308835, guid: 125621a83711bb84aac8b5994301cca0,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 739021116608308835, guid: 125621a83711bb84aac8b5994301cca0,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2139952279510517060, guid: 125621a83711bb84aac8b5994301cca0,
         type: 3}
@@ -745,6 +745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139952279510517060, guid: 125621a83711bb84aac8b5994301cca0,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2199136429940634337, guid: 125621a83711bb84aac8b5994301cca0,
         type: 3}
@@ -1380,7 +1385,7 @@ PrefabInstance:
     - target: {fileID: 2135754929519456291, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
       propertyPath: force
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3071747961077302823, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
@@ -1473,7 +1478,7 @@ PrefabInstance:
     - target: {fileID: 2135754929519456291, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
       propertyPath: force
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3071747961077302823, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
@@ -1561,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 2135754929519456291, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
       propertyPath: force
-      value: 50
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3071747961077302823, guid: e97a088c25f6c9947bea2edff1a082c7,
         type: 3}
