@@ -38,6 +38,7 @@ public class RobotController : MonoBehaviour
     public Rigidbody rb;
     public float moveImpulse = 6.0f;
 
+
     private GameObject enemyRobot;
 
     public BoxCollider hurtboxTop;
@@ -125,7 +126,6 @@ public class RobotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookAtEnemy();
         healthBar.fillAmount = health / maxHealth;
 
         if (player)
@@ -137,6 +137,7 @@ public class RobotController : MonoBehaviour
                 //LookAtEnemy();
                 //JumpFront();
                 AttackNormal();
+                LookAtEnemy();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -184,12 +185,14 @@ public class RobotController : MonoBehaviour
 
     public void AttackNormal()
     {
+        PlayeWooshSound();
         MoveRobot(Directions.Forward, 0.5f);
         StartCoroutine(ActivateHitbox(hitBoxTop, 1.0f));
     }
 
     public void AttackLow()
     {
+        PlayeWooshSound();
         MoveRobot(Directions.Forward, 0.5f);
         StartCoroutine(ChangeYKnockback(2.0f, 1.0f));
         StartCoroutine(ChangeKnockback(normalKnockback + 2.0f, 1.0f));
@@ -226,16 +229,19 @@ public class RobotController : MonoBehaviour
 
     public void AttackLeft()
     {
+        PlayeWooshSound();
         StartCoroutine(ActivateHitbox(hitBoxLeft, 0.5f));
     }
 
     public void AttackRight()
     {
+        PlayeWooshSound();
         StartCoroutine(ActivateHitbox(hitBoxRight, 0.5f));
     }
 
     public void AttackUppercut()
     {
+        PlayeWooshSound();
         StartCoroutine(ChangeYKnockback(10.0f, 0.5f));
         StartCoroutine(ActivateHitbox(hitBoxUppercut, 0.5f));
     }
@@ -261,6 +267,14 @@ public class RobotController : MonoBehaviour
                 tr_key.localEulerAngles = euler;
             })
             .SetEase(Ease.OutBack);
+    }
+
+    private void PlayeWooshSound()
+    {
+        if (soundsWhoosh.Length > 0)
+        {
+            PlaysSound(soundsWhoosh[Random.Range(0, soundsWhoosh.Length - 1)], 0.2f, 0.6f);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -295,9 +309,8 @@ public class RobotController : MonoBehaviour
         vfx_sparks.Play();
         if (soundsDamageColision.Length > 0)
         {
-            PlaysSound(soundsDamageColision[Random.Range(0, soundsDamageColision.Length-1)], 0.15f, 1.0f);
+            PlaysSound(soundsDamageColision[Random.Range(0, soundsDamageColision.Length - 1)], 0.15f, 1.0f);
         }
-        
     }
 
     public void LookAtEnemy()
@@ -320,7 +333,7 @@ public class RobotController : MonoBehaviour
         audioSource.clip = audioClip;
         audioSource.pitch = Random.Range(audioSource.pitch - pitchRange, audioSource.pitch + pitchRange);
         audioSource.volume = volume * SFXSoundLevelVolume;
-        Debug.Log("Final volume: "+ audioSource.volume + " SFXLevelVolume: " + SFXSoundLevelVolume);
+        Debug.Log("Final volume: " + audioSource.volume + " SFXLevelVolume: " + SFXSoundLevelVolume);
         audioSource.Play();
         float clipLength = audioSource.clip.length;
         Destroy(audioSource.gameObject, clipLength);
@@ -333,14 +346,11 @@ public class RobotController : MonoBehaviour
     {
         isInImpactFrame = true;
 
-        Vector3 velocity = rb.velocity;
-        // Vector3 velocity_angular = rb.angularVelocity;
-
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
 
-        yield return new WaitForSeconds(0.12f);
+        yield return new WaitForSeconds(0.2f);
 
         //rb.velocity = velocity_angular;
         rb.useGravity = true;

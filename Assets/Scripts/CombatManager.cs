@@ -42,6 +42,8 @@ public class CombatManager : MonoBehaviour
     public GameObject panelCombat;
     public GameObject panelEndCombat;
 
+    private SoundManager _soundManager;
+
     [SerializeField] public TMP_Text endCombatText;
 
     public CombatSceneFlow currentCombatState = CombatSceneFlow.Start;
@@ -61,6 +63,10 @@ public class CombatManager : MonoBehaviour
     {
         camera = Camera.main;
         camera.fieldOfView = 60.0f;
+        clockText.text = "";
+
+        _soundManager = FindObjectOfType<SoundManager>();
+        if (_soundManager == null) Debug.Log("Sound Manager NOT FOUND!!!");
 
         StartCoroutine(RunCameraRingCinematic(390.0f));
 
@@ -107,6 +113,10 @@ public class CombatManager : MonoBehaviour
         }
 
         UpdateUIPanels();
+        
+        // Sound Update
+        PlayerRobot.SFXSoundLevelVolume = _soundManager.masterVolume * _soundManager.sfxVolume;
+        EnemyRobot.SFXSoundLevelVolume = _soundManager.masterVolume * _soundManager.sfxVolume;
     }
 
     void UpdateClock()
@@ -124,6 +134,7 @@ public class CombatManager : MonoBehaviour
     {
         combatStarted = false;
         currentCombatState = CombatSceneFlow.EndCombatScreen;
+        clockText.text = "";
         //camera.fieldOfView = 60.0f;
         UpdateUIPanels();
 
@@ -155,7 +166,7 @@ public class CombatManager : MonoBehaviour
             yield return null;
         }
     }
-    
+
     private Transform FindTaggedChild(Transform parent, string tag)
     {
         foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
@@ -316,12 +327,12 @@ public class CombatManager : MonoBehaviour
             Vector3 cameraPosition = centerOfRing + offset + Vector3.up * heightCameraOffsetRingCinematic;
 
             camera.transform.position = cameraPosition;
-            camera.transform.LookAt(centerOfRing);
+            camera.transform.LookAt(centerOfRing + Vector3.up);
 
             yield return null;
         }
 
-        camera.transform.LookAt(centerOfRing);
+        camera.transform.LookAt(centerOfRing + Vector3.up);
         StartCinematicVS();
     }
 
@@ -342,7 +353,14 @@ public class CombatManager : MonoBehaviour
 
             camera.transform.position = Vector3.Lerp(camera.transform.position, desiredPosition, Time.deltaTime * 3f);
 
-            Vector3 lookPosition = (PlayerRobot.tr.position - EnemyRobot.tr.position) / 2 + EnemyRobot.tr.position;
+            float middlepoint = 0.7f;
+            if (Vector3.Distance(PlayerRobot.tr.position, EnemyRobot.tr.position) > 4.0f)
+            {
+                middlepoint = 0.5f;
+            }
+
+            Vector3 lookPosition = ((PlayerRobot.tr.position - EnemyRobot.tr.position) * middlepoint +
+                                    EnemyRobot.tr.position) + Vector3.up;
 
             // Smooth rotation
             Quaternion desiredRotation = Quaternion.LookRotation(lookPosition - camera.transform.position);
@@ -351,11 +369,21 @@ public class CombatManager : MonoBehaviour
 
             // Adjust FOV based on distance
             float distance = Vector3.Distance(PlayerRobot.tr.position, EnemyRobot.tr.position);
-            float t2 = Mathf.InverseLerp(3f, 100f, distance);
-            float targetFOV = Mathf.Lerp(45.0f, 60f, t2);
-            targetFOV = Mathf.Max(30, targetFOV);
+            float t2 = Mathf.InverseLerp(1f, 30f, distance);
+            float targetFOV = Mathf.Lerp(40.0f, 60f, t2);
+            if (Vector3.Distance(lookPosition, camera.transform.position) < 13.0f)
+            {
+                targetFOV = Mathf.Max(50, targetFOV);
+            }
+
+            if (Mathf.Abs((PlayerRobot.tr.position.y - EnemyRobot.tr.position.y)) > 5.0f)
+            {
+                targetFOV = Mathf.Max(60, targetFOV);
+            }
+
+            targetFOV = Mathf.Max(40, targetFOV);
             targetFOV = Mathf.Min(60, targetFOV);
-            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, Time.deltaTime * 20f);
+            camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, targetFOV, Time.deltaTime * 5f);
 
             yield return null;
         }
@@ -367,6 +395,7 @@ public class CombatManager : MonoBehaviour
         currentCombatState = CombatSceneFlow.CinematicVS;
         UpdateUIPanels();
         StartCoroutine(VSAnimation());
+        _soundManager.PlayMusic(_soundManager.musicLibrary[1]);
     }
 
 
@@ -420,7 +449,7 @@ public class CombatManager : MonoBehaviour
     // UI
     public void ContinueBtn()
     {
-        Debug.Log("Button Continue pressed");
-        // SceneManager.LoadScene("StartMenu...");
+        _soundManager.PlayMusic(_soundManager.musicLibrary[0]);
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
-  rotationSpeed: 10
+  rotationSpeed: 90
   player: 1
   healthBar: {fileID: 4204229442747768352}
   isInvincible: 0
@@ -393,7 +393,9 @@ MonoBehaviour:
   SFXSoundLevelVolume: 0.5
   soundsDamageColision:
   - {fileID: 8300000, guid: efd59cd6041667d4cbcb0b7b8badc36c, type: 3}
-  soundsWhoosh: []
+  soundsWhoosh:
+  - {fileID: 8300000, guid: bdcb6f1a131c5fb4fb9c3a104c7940cf, type: 3}
+  - {fileID: 8300000, guid: 3686f7ffaa18e4a479378080d1f84d48, type: 3}
   soundsNormalColision: []
 --- !u!54 &2837974898437427187
 Rigidbody:
