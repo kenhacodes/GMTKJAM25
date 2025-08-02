@@ -5,6 +5,8 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
+
 
 public class RobotController : MonoBehaviour
 {
@@ -28,6 +30,10 @@ public class RobotController : MonoBehaviour
     public float normalKnockback = 5.0f;
     private float currentKnockback;
 
+    private bool isInImpactFrame = false;
+    private Vector3 accumulatedVelocity = Vector3.zero;
+    private Vector3 finalKnockbackAfterTheImpactFrameBecauseICan = Vector3.zero * 3.14f;
+
     public Transform tr;
     public Rigidbody rb;
     public float moveImpulse = 6.0f;
@@ -43,9 +49,17 @@ public class RobotController : MonoBehaviour
     public BoxCollider hitBoxLeft;
     public BoxCollider hitBoxRight;
 
+    public ParticleSystem vfx_sparks;
+
     public Transform tr_key;
     private float tr_key_currentRotationX = 0f;
     private Tween keyrotationTween;
+
+    [SerializeField] private AudioSource soundFXObject;
+    public float SFXSoundLevelVolume = 1.0f;
+    public AudioClip[] soundsDamageColision;
+    public AudioClip[] soundsWhoosh;
+    public AudioClip[] soundsNormalColision;
 
     public enum Directions
     {
@@ -58,8 +72,14 @@ public class RobotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitRobot();
+    }
+
+    public void InitRobot()
+    {
         health = maxHealth;
         if (rb == null) Debug.Log("RB not set Robot");
+
         if (enemyRobot == null)
         {
             RobotController[] robots = FindObjectsOfType<RobotController>();
@@ -91,7 +111,15 @@ public class RobotController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(Physics.gravity * (rb.mass * (gravityScale - 1)));
+        if (isInImpactFrame)
+        {
+            accumulatedVelocity += rb.velocity;
+            rb.velocity = Vector3.zero;
+        }
+        else
+        {
+            rb.AddForce(Physics.gravity * (rb.mass * (gravityScale - 1)));
+        }
     }
 
     // Update is called once per frame
@@ -107,7 +135,8 @@ public class RobotController : MonoBehaviour
             {
                 RobotKeyRotation();
                 //LookAtEnemy();
-                JumpFront();
+                //JumpFront();
+                AttackNormal();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -117,7 +146,6 @@ public class RobotController : MonoBehaviour
             }
         }
     }
-
 
     // Programmable Actions
 
@@ -186,7 +214,7 @@ public class RobotController : MonoBehaviour
         if (tr.position.y < floorHeight + 2.0f)
         {
             dir = tr.forward.normalized * moveImpulse;
-            dir.y = 14.0f;
+            dir.y = 15.5f;
         }
         else
         {
@@ -211,7 +239,6 @@ public class RobotController : MonoBehaviour
         StartCoroutine(ChangeYKnockback(10.0f, 0.5f));
         StartCoroutine(ActivateHitbox(hitBoxUppercut, 0.5f));
     }
-
 
     // Other functions
     public void RobotKeyRotation()
@@ -246,7 +273,9 @@ public class RobotController : MonoBehaviour
             var enemy = other.GetComponentInParent<RobotController>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10.0f, 5.0f, currentYKnockback);
+                enemy.TakeDamage(10.0f, currentKnockback, currentYKnockback);
+                StartCoroutine(enemy.ImpactFrame());
+                StartCoroutine(ImpactFrame());
             }
         }
     }
@@ -261,11 +290,17 @@ public class RobotController : MonoBehaviour
         Vector3 knockback_dir = Vector3.zero;
         knockback_dir = -(enemyRobot.transform.position - tr.position).normalized;
         knockback_dir.y = knockbackForceY;
-
-        rb.AddForce(knockback_dir * knockbackForce, ForceMode.Impulse);
+        StartCoroutine(ActivateInvincibility());
+        finalKnockbackAfterTheImpactFrameBecauseICan = knockback_dir * knockbackForce;
+        vfx_sparks.Play();
+        if (soundsDamageColision.Length > 0)
+        {
+            PlaysSound(soundsDamageColision[Random.Range(0, soundsDamageColision.Length-1)], 0.15f, 1.0f);
+        }
+        
     }
 
-    void LookAtEnemy()
+    public void LookAtEnemy()
     {
         if (enemyRobot == null) return;
 
@@ -279,7 +314,39 @@ public class RobotController : MonoBehaviour
         }
     }
 
-// Coroutines
+    public void PlaysSound(AudioClip audioClip, float pitchRange, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, tr.position, Quaternion.identity);
+        audioSource.clip = audioClip;
+        audioSource.pitch = Random.Range(audioSource.pitch - pitchRange, audioSource.pitch + pitchRange);
+        audioSource.volume = volume * SFXSoundLevelVolume;
+        Debug.Log("Final volume: "+ audioSource.volume + " SFXLevelVolume: " + SFXSoundLevelVolume);
+        audioSource.Play();
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+    }
+
+
+    // Coroutines
+
+    IEnumerator ImpactFrame()
+    {
+        isInImpactFrame = true;
+
+        Vector3 velocity = rb.velocity;
+        // Vector3 velocity_angular = rb.angularVelocity;
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.useGravity = false;
+
+        yield return new WaitForSeconds(0.12f);
+
+        //rb.velocity = velocity_angular;
+        rb.useGravity = true;
+        rb.AddForce(finalKnockbackAfterTheImpactFrameBecauseICan, ForceMode.Impulse);
+        isInImpactFrame = false;
+    }
 
     IEnumerator ActivateHitbox(BoxCollider hitbox, float activeDuration = 1.0f)
     {

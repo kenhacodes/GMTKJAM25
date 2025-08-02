@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hurtbox
   - Hitbox
+  - RobotModel
   layers:
   - Default
   - TransparentFX

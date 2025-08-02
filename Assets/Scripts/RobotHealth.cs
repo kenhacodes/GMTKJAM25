@@ -9,20 +9,39 @@ public class RobotHealth : MonoBehaviour
     public Image fill;
     public float changeSpeed = 10.0f;
     public bool isPlayer = false;
-    public float fillAmount { get; set; } = 1.0f;
+    public float fillAmount { get; set; } = -1.0f;
 
-    private Vector3 originalPos;
-    public Vector3 enemyHealthBarOffset = new Vector3(600.0f, 0.0f, 0.0f);
+    private Vector3 _originalPos;
+    public Vector3 playerHealthBar = new Vector3(600.0f, -90.0f, 0.0f);
+    public Vector3 enemyHealthBar = new Vector3(1200.0f, -90.0f, 0.0f);
 
     private void Start()
     {
-        originalPos = transform.position;
+        _originalPos = GetComponent<RectTransform>().anchoredPosition;
     }
 
     public void UpdatePositionHealthBar()
     {
-        if (!isPlayer) transform.position = originalPos + enemyHealthBarOffset;
+        RectTransform rect = GetComponent<RectTransform>();
+
+        if (!isPlayer)
+        {
+            rect.anchoredPosition = enemyHealthBar;
+            fill.fillOrigin = 1;
+        }
+        else
+        {
+            rect.anchoredPosition = playerHealthBar;
+            fill.fillOrigin = 0;
+        }
     }
+
+    public void SetVisibility(bool active)
+    {
+        fill.enabled = active;
+        GetComponent<Image>().enabled = active;
+    }
+    
 
     // Update is called once per frame
     void Update()
