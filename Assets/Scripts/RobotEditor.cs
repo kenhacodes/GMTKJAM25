@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class RobotCustomizer : MonoBehaviour
 {
-    [Header("Slots (Padres opcionales, no usados en esta versión)")]
-    public Transform headSlot;
-    public Transform trunkSlot;
-    public Transform armsSlot;
-    public Transform legsSlot;
-    public Transform keySlot;
-
-    [Header("Parts (Todos los modelos ya deben estar en la escena como hijos del robot y desactivados)")]
+    [Header("Parts")]
     public GameObject[] headOptions;
     public GameObject[] trunkOptions;
     public GameObject[] armOptions;
@@ -85,6 +78,16 @@ public class RobotCustomizer : MonoBehaviour
     {
         keyIndex = (keyIndex + 1) % keyOptions.Length;
         ActivatePart(keyOptions, keyIndex);
+    }
+
+    public void SaveSelection()
+    {
+        PlayerPrefs.SetInt("Robot_HeadIndex", headIndex);
+        PlayerPrefs.SetInt("Robot_TrunkIndex", trunkIndex);
+        PlayerPrefs.SetInt("Robot_ArmsIndex", armsIndex);
+        PlayerPrefs.SetInt("Robot_LegsIndex", legsIndex);
+        PlayerPrefs.SetInt("Robot_KeyIndex", keyIndex);
+        PlayerPrefs.Save();
     }
 
     private void ActivatePart(GameObject[] options, int activeIndex)

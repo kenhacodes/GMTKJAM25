@@ -6,8 +6,38 @@
   <component name="ChangeListManager">
     <list default="true" id="1936517b-8423-474f-b7d9-f0642bc5baab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_BaseColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_BaseColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_BaseColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_BaseColor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_BaseColor.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Metallic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Metallic.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Roughness.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Roughness.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Robo Soldado .fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Robo Soldado .fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/RoboGato.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/RoboGato.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/CharacterEditor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CharacterEditor.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RobotController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RobotController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RobotEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RobotEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,28 +47,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="30fWCNJeE9gy0LF8AXTSeGm8O1a" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

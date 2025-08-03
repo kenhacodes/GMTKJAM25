@@ -135,7 +135,7 @@ public class RobotController : MonoBehaviour
 
         if (player)
         {
-            //Testing 
+            //Testing
             if (Input.GetMouseButtonDown(0))
             {
                 RobotKeyRotation();
