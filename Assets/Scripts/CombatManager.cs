@@ -270,7 +270,7 @@ public class CombatManager : MonoBehaviour
 
             Vector3 startPos = camera.transform.position
                                + (camera.transform.forward * 2.2f)
-                               - (camera.transform.up * 1.6f)
+                               - (camera.transform.up * 2.6f)
                                - (camera.transform.right * 5.0f);
 
             clone1.transform.position = startPos;
@@ -289,7 +289,7 @@ public class CombatManager : MonoBehaviour
 
             Vector3 startPos = camera.transform.position
                                + (camera.transform.forward * 2.2f)
-                               - (camera.transform.up * 1.6f)
+                               - (camera.transform.up * 2.6f)
                                + (camera.transform.right * 5.0f);
 
             clone2.transform.position = startPos;
