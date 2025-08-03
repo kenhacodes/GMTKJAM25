@@ -1,0 +1,418 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3678919396814027755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6922488269757929980}
+  - component: {fileID: 5357971725145032678}
+  - component: {fileID: 2149638814337749603}
+  m_Layer: 0
+  m_Name: palanca
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6922488269757929980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678919396814027755}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.5749051, y: 0.809271, z: 0.25263894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3472479082566721734}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5357971725145032678
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678919396814027755}
+  m_Mesh: {fileID: -3669593079667356831, guid: 511e7570cf2cba4439894f6e39104940, type: 3}
+--- !u!23 &2149638814337749603
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678919396814027755}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 6646411592658168129, guid: 511e7570cf2cba4439894f6e39104940, type: 3}
+  - {fileID: 4704348941901586735, guid: 511e7570cf2cba4439894f6e39104940, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6917914385159475978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3472479082566721734}
+  m_Layer: 0
+  m_Name: luchador-bot 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3472479082566721734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917914385159475978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.391}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9084726888147925740}
+  - {fileID: 6443832594128462412}
+  - {fileID: 6922488269757929980}
+  - {fileID: 5567872521591140367}
+  - {fileID: 365880681734625766}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1750145987962319254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3472479082566721734}
+    m_Modifications:
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.929
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.23099995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8179144520906002758, guid: 124ca4011868d8842823a939f2c77acf,
+        type: 3}
+      propertyPath: m_Name
+      value: Luchador-bot_head
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 124ca4011868d8842823a939f2c77acf, type: 3}
+--- !u!4 &6443832594128462412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4694108822943159258, guid: 124ca4011868d8842823a939f2c77acf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1750145987962319254}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2317373915551076444
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3472479082566721734}
+    m_Modifications:
+    - target: {fileID: 1472035773295443117, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_Name
+      value: Luchador-bot_trunk
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5709341
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.707
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0022416115
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6907af3a931acee44a2f9f3899530e65, type: 3}
+--- !u!4 &9084726888147925740 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6790189864002431664, guid: 6907af3a931acee44a2f9f3899530e65,
+    type: 3}
+  m_PrefabInstance: {fileID: 2317373915551076444}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4243710258884605839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3472479082566721734}
+    m_Modifications:
+    - target: {fileID: 7594889183025575657, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_Name
+      value: Luchador-bot_legs
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.74206495
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.38491637
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d2f7f550ea1443c49b88017822a7f680, type: 3}
+--- !u!4 &5567872521591140367 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8620348672534005632, guid: d2f7f550ea1443c49b88017822a7f680,
+    type: 3}
+  m_PrefabInstance: {fileID: 4243710258884605839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6396482581336545419
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3472479082566721734}
+    m_Modifications:
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0019999743
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280077329896296291, guid: 0244fd89414b6974ebf9416c6bd6e742,
+        type: 3}
+      propertyPath: m_Name
+      value: Luchador-bot_arm
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0244fd89414b6974ebf9416c6bd6e742, type: 3}
+--- !u!4 &365880681734625766 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6761875075595600237, guid: 0244fd89414b6974ebf9416c6bd6e742,
+    type: 3}
+  m_PrefabInstance: {fileID: 6396482581336545419}
+  m_PrefabAsset: {fileID: 0}
