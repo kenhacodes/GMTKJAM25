@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b95eb32f48b004e85bf0c8fb5acfe1, type: 3}
+  m_Name: BlockStyles
+  m_EditorClassIdentifier: 
+  styles_:
+  - blockType_: 2
+    actionType_: 2
+    sprite_: {fileID: 21300000, guid: d7de3d338b97da24384ec6038e176cbc, type: 3}
+    color_: {r: 1, g: 0, b: 0, a: 1}
+  - blockType_: 2
+    actionType_: 1
+    sprite_: {fileID: 21300000, guid: d7de3d338b97da24384ec6038e176cbc, type: 3}
+    color_: {r: 0, g: 0, b: 1, a: 1}
+  - blockType_: 1
+    actionType_: 3
+    sprite_: {fileID: 21300000, guid: d7de3d338b97da24384ec6038e176cbc, type: 3}
+    color_: {r: 0, g: 1, b: 0.0016489029, a: 1}
+  - blockType_: 3
+    actionType_: 0
+    sprite_: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    color_: {r: 1, g: 0, b: 0.7817097, a: 1}
