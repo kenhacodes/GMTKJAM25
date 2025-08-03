@@ -6,38 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1936517b-8423-474f-b7d9-f0642bc5baab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_BaseColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Metallic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Metallic.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Roughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/gato-bot_Material _348_Roughness.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_BaseColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Metallic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Metallic.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Roughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/luchador-bot_Material _348_Roughness.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_BaseColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_BaseColor.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Metallic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Metallic.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Roughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/mexicano-bot_Material _348_Roughness.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_BaseColor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_BaseColor.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Metallic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Metallic.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Roughness.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Materials/suelo_DefaultMaterial_Roughness.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Robo Soldado .fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Robo Soldado .fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/RoboGato.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/RoboGato.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CharacterEditor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CharacterEditor.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/RobotController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RobotController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RobotEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RobotEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

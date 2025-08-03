@@ -358,17 +358,16 @@ MonoBehaviour:
   rotationSpeed: 100
   player: 1
   healthBar: {fileID: 4204229442747768352}
-  animator: {fileID: 4615276652878490365}
   isInvincible: 0
   invincibleTime: 0.5
+  floorHeight: 1
+  gravityScale: 5
   blockDuration: 0.5
   normalYKnockback: 1.5
   normalKnockback: 6
-  floorHeight: 1
-  gravityScale: 5
-  moveImpulse: 8
   tr: {fileID: 2139952279510517060}
   rb: {fileID: 2837974898437427187}
+  moveImpulse: 8
   hurtboxTop: {fileID: 2896000306672701612}
   hurtboxLow: {fileID: 36484111546017682}
   hitBoxTop: {fileID: 2522434173942857082}
@@ -393,6 +392,7 @@ MonoBehaviour:
   soundsNormalColision:
   - {fileID: 8300000, guid: 3c6fad4adf4f8bd42b1424b9c4fd7a3c, type: 3}
   explosionRobotSound: {fileID: 8300000, guid: 30b313a186e5ad14ea597bfaca16db7f, type: 3}
+  animator: {fileID: 4615276652878490365}
 --- !u!54 &2837974898437427187
 Rigidbody:
   m_ObjectHideFlags: 0

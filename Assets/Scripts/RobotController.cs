@@ -66,6 +66,7 @@ public class RobotController : MonoBehaviour
     public AudioClip[] soundsNormalColision;
     public AudioClip explosionRobotSound;
 
+    public Animator animator;
 
     public enum Directions
     {
@@ -154,34 +155,35 @@ public class RobotController : MonoBehaviour
     }
 
     // Programmable Actions
+    private void ReturnToIdle()
+    {
+        if (animator != null)
+            animator.Play("Idle_animation");
+    }
 
     public void MoveRobot(Directions dr, float forceMultiplier = 1.0f)
     {
         Vector3 dir = Vector3.zero;
         switch (dr)
         {
-            case Directions.Forward:
-            {
-                dir = tr.forward.normalized;
-                break;
-            }
-            case Directions.Backwards:
-            {
-                dir = -tr.forward.normalized;
-                break;
-            }
-            case Directions.Right:
-            {
-                dir = tr.right.normalized;
-                break;
-            }
-            case Directions.Left:
-            {
-                dir = -tr.right.normalized;
-                break;
-            }
+             case Directions.Forward:
+                  dir = tr.forward.normalized;
+                  animator.Play("RightStep_animation");
+                  break;
+             case Directions.Backwards:
+                  dir = -tr.forward.normalized;
+                  animator.Play("BackStep_animation");
+                  break;
+             case Directions.Right:
+                  dir = tr.right.normalized;
+                  animator.Play("RightSideStep_animation");
+                  break;
+             case Directions.Left:
+                  dir = -tr.right.normalized;
+                  animator.Play("LeftSideStep_animation");
+                  break;
         }
-
+        Invoke(nameof(ReturnToIdle), 1.0f);
         if (tr.position.y < floorHeight + 2.5f) dir.y = 0.5f;
 
         rb.AddForce(dir * moveImpulse, ForceMode.Impulse);
@@ -190,33 +192,45 @@ public class RobotController : MonoBehaviour
     public void AttackNormal()
     {
         PlayeWooshSound();
+        animator.Play("RightPunch_animation");
         MoveRobot(Directions.Forward, 0.5f);
         StartCoroutine(ActivateHitbox(hitBoxTop, 1.0f));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void AttackLow()
     {
         PlayeWooshSound();
+        animator.Play("Kick_animation");
         MoveRobot(Directions.Forward, 0.5f);
         StartCoroutine(ChangeYKnockback(2.0f, 1.0f));
         StartCoroutine(ChangeKnockback(normalKnockback + 2.0f, 1.0f));
         StartCoroutine(ActivateHitbox(hitBoxLow, 1.0f));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void BlockNormal()
     {
         rb.velocity = Vector3.zero;
+        animator.Play("HighLock_animation");
         StartCoroutine(DeactivateHurtbox(hurtboxTop, blockDuration));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void BlocKLow()
     {
         rb.velocity = Vector3.zero;
+        animator.Play("LowLock_animation");
         StartCoroutine(DeactivateHurtbox(hurtboxLow, blockDuration));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void JumpFront()
     {
+        if (animator != null)
+                animator.Play("Jump_animation");
+
+
         Vector3 dir;
         if (tr.position.y < floorHeight + 2.0f)
         {
@@ -229,25 +243,32 @@ public class RobotController : MonoBehaviour
         }
 
         rb.AddForce(dir, ForceMode.Impulse);
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void AttackLeft()
     {
         PlayeWooshSound();
+        animator.Play("LeftPunch_animation");
         StartCoroutine(ActivateHitbox(hitBoxLeft, 0.5f));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void AttackRight()
     {
         PlayeWooshSound();
+        animator.Play("RightStrongAttack_animation");
         StartCoroutine(ActivateHitbox(hitBoxRight, 0.5f));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     public void AttackUppercut()
     {
         PlayeWooshSound();
+        animator.Play("Upercut_animation");
         StartCoroutine(ChangeYKnockback(10.0f, 0.5f));
         StartCoroutine(ActivateHitbox(hitBoxUppercut, 0.5f));
+        Invoke(nameof(ReturnToIdle), 1.0f);
     }
 
     // Other functions
@@ -318,7 +339,9 @@ public class RobotController : MonoBehaviour
     public void TakeDamage(float damage, float knockbackForce = 5.0f, float knockbackForceY = 1.0f)
     {
         if (isInvincible) return;
-
+        animator.Play("Damage_animation");
+        Invoke(nameof(ReturnToIdle), 1.0f);
+        
         health -= damage;
         health = Mathf.Max(0.0f, health);
 
