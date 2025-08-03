@@ -49,6 +49,7 @@ public class MovementList : ScriptableObject
     public void AddMove(ActionType type, RobotController.Directions directions, float time)
     {
         movements_.Add(new Movement(ActionTypeToAction(type, directions), time));
+        
     }
 
     public Action ActionTypeToAction(ActionType type, RobotController.Directions directions)

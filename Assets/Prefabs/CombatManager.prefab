@@ -296,6 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7312643997886082595}
   - component: {fileID: 4093293171997178169}
+  - component: {fileID: 7929466076011273079}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -343,6 +344,8 @@ MonoBehaviour:
     type: 3}
   playerStartPosition: {x: 0, y: 0, z: 0}
   enemyStartPosition: {x: 0, y: 0, z: 0}
+  PlayerRobot: {fileID: 0}
+  EnemyRobot: {fileID: 0}
   fightCountdown:
   - {fileID: 21300000, guid: b92703538cc5da140a8d3b1249395f9f, type: 3}
   - {fileID: 21300000, guid: ea97e473fc5eb3848b51551d86b7736a, type: 3}
@@ -359,6 +362,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ab0ff34dd7d71cb4e90aaf950a8a18d4, type: 3}
   endCombatText: {fileID: 0}
   currentCombatState: 0
+--- !u!114 &7929466076011273079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3342067360440010677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c817889bcb19f4bb20911eabf7951d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMoveSet_: {fileID: 11400000, guid: dbca6a552765a8a44acfbe093d06fb68, type: 2}
+  enemyMoveSet_: {fileID: 11400000, guid: 3f785bcb94663f041b27cf72d8f8e016, type: 2}
+  combatman: {fileID: 4093293171997178169}
+  tickTime: 0.5
 --- !u!1 &3863058209718630454
 GameObject:
   m_ObjectHideFlags: 0

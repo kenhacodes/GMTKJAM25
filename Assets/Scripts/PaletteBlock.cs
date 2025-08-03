@@ -13,6 +13,8 @@ public class PaletteBlock : MonoBehaviour, IPointerDownHandler
     public Image image_;
     private TextMeshProUGUI text_;
 
+    private WhileBlock _whileBlock;
+
     private RectTransform rectTr_;
 
     // Start is called before the first frame update
@@ -30,6 +32,8 @@ public class PaletteBlock : MonoBehaviour, IPointerDownHandler
         text_ = GetComponentInChildren<TextMeshProUGUI>();
         text_.text = blockInfo_.text_;
         text_.ForceMeshUpdate();
+
+        _whileBlock = FindObjectOfType<WhileBlock>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,11 @@ public class PaletteBlock : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (_whileBlock.eventZone_.transform.childCount > 15)
+        {
+            return;
+        }
+        
         GameObject clone = Instantiate(blockPrefab, transform.position, Quaternion.identity);
 
         clone.transform.SetParent(transform.parent, true);
@@ -51,5 +60,6 @@ public class PaletteBlock : MonoBehaviour, IPointerDownHandler
         var block = clone.GetComponent<MovableBlock>();
         block.SetBlockStyle(blockInfo_);
         block.VariableSlotUpdate();
+        _whileBlock.SetNewBlockInList(block);
     }
 }

@@ -8,7 +8,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Block", menuName = "Block/Type")]
 public class Block : ScriptableObject
 {
-
     public BlockType blockType_;
     public ActionType actionType_;
     public int width_;

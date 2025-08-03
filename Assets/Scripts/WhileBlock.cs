@@ -5,9 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class WhileBlock : MonoBehaviour, IDropHandler
+public class WhileBlock : MonoBehaviour
 {
-
     private RectTransform tr_;
 
     public GameObject eventZone_;
@@ -18,7 +17,6 @@ public class WhileBlock : MonoBehaviour, IDropHandler
     void Start()
     {
         tr_ = GetComponent<RectTransform>();
-
     }
 
     // Update is called once per frame
@@ -73,12 +71,24 @@ public class WhileBlock : MonoBehaviour, IDropHandler
                 playerMoveSet_.AddMove(block.blockInfo_.actionType_, dir, block.blockInfo_.executionTime_);
             }
         }
-
     }
 
+    public void SetNewBlockInList(MovableBlock block)
+    {
+        // Set parent to the event zone (without keeping world position)
+        block.transform.SetParent(eventZone_.transform, false);
+
+        // Set it as the last sibling
+        int lastIndex = eventZone_.transform.childCount - 1;
+        block.transform.SetSiblingIndex(lastIndex);
+
+        // Rebuild layout immediately to reflect changes
+        LayoutRebuilder.ForceRebuildLayoutImmediate(eventZone_.GetComponent<RectTransform>());
+    }
+    
+/*
     public void OnDrop(PointerEventData eventData)
     {
-
         MovableBlock block = eventData.pointerDrag?.GetComponent<MovableBlock>();
 
         if (block != null)
@@ -89,11 +99,12 @@ public class WhileBlock : MonoBehaviour, IDropHandler
 
                 int newIndex = eventZone_.transform.childCount;
 
-                Vector3 worldMousePos = eventData.pointerCurrentRaycast.worldPosition;
+                Vector3 worldMousePos = eventData.pointerCurrentRaycast.screenPosition;
 
                 foreach (Transform child in eventZone_.transform)
                 {
-                    if (worldMousePos.y > child.position.y) 
+                    //Debug.Log("worldMousePos.y: " + worldMousePos.y + "  child position: " + child.position.y);
+                    if (worldMousePos.y > child.position.y)
                     {
                         newIndex = child.GetSiblingIndex();
                         break;
@@ -105,7 +116,7 @@ public class WhileBlock : MonoBehaviour, IDropHandler
                 // let the layout system handle position, don't zero it manually
                 UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(eventZone_.GetComponent<RectTransform>());
             }
-
         }
     }
+*/
 }

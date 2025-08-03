@@ -56,21 +56,21 @@ public class MovableBlock : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (canvas_ == null) canvas_ = GetComponentInParent<Canvas>();
+        //if (canvas_ == null) canvas_ = GetComponentInParent<Canvas>();
 
-        canvasGroup_.blocksRaycasts = false;
-        transform.SetParent(canvas_.transform, true);
-        transform.SetAsLastSibling();
+        //canvasGroup_.blocksRaycasts = false;
+        //transform.SetParent(canvas_.transform, true);
+       // transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTr_.anchoredPosition += eventData.delta / canvas_.scaleFactor;
+        //rectTr_.anchoredPosition += eventData.delta / canvas_.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup_.blocksRaycasts = true;
+        //canvasGroup_.blocksRaycasts = true;
     }
 
     public void OnPointerClick(PointerEventData eventData)

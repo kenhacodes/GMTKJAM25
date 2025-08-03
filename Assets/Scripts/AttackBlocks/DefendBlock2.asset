@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d553e40e8ab7164439157258a8ab291e, type: 3}
-  m_Name: MoveBlock
+  m_Name: DefendBlock2
   m_EditorClassIdentifier: 
-  blockType_: 2
-  actionType_: 1
-  width_: 100
-  height_: 25
-  text_: Move
+  blockType_: 1
+  actionType_: 3
+  width_: 300
+  height_: 50
+  text_: Defend Low
   executionTime_: 0

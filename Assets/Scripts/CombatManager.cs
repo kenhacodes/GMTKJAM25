@@ -27,8 +27,8 @@ public class CombatManager : MonoBehaviour
     public GameObject RobotPrefab;
     public Vector3 playerStartPosition;
     public Vector3 enemyStartPosition;
-    private RobotController PlayerRobot;
-    private RobotController EnemyRobot;
+    public RobotController PlayerRobot;
+    public RobotController EnemyRobot;
 
     private float playerHealth;
     private float enemyHealth;
@@ -46,6 +46,8 @@ public class CombatManager : MonoBehaviour
     public AudioClip[] backgroundSounds;
     private SoundManager _soundManager;
 
+    public TickManager _tickManager;
+    
     [SerializeField] public TMP_Text endCombatText;
 
     public CombatSceneFlow currentCombatState = CombatSceneFlow.Start;
@@ -143,6 +145,8 @@ public class CombatManager : MonoBehaviour
         currentCombatState = CombatSceneFlow.EndCombatScreen;
         clockText.text = "";
 
+        _tickManager.tickingActive = false;
+        
         UpdateUIPanels();
 
         EnemyRobot.rb.velocity = Vector3.zero;
@@ -325,6 +329,7 @@ public class CombatManager : MonoBehaviour
         combatStarted = false;
         combatImages[0].enabled = false;
         combatImages[1].enabled = false;
+        
         UpdateUIPanels();
         StartCoroutine(AnimationCombatCountdownStart());
     }
@@ -370,6 +375,8 @@ public class CombatManager : MonoBehaviour
         combatImages[0].enabled = false;
         combatImages[1].enabled = false;
         combatStarted = true;
+        _tickManager.tickingActive = true;
+        StartCoroutine(_tickManager.DoTick());
         StartCoroutine(CombatCamera());
     }
 
