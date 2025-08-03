@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelCatbot.unity
     guid: 35ec06b4c0d88db4b9317a9ae722803f
+  - enabled: 1
+    path: Assets/Scenes/BlockTest.unity
+    guid: 94ceee0562e716647a9c4126ba9ecb7a
   m_configObjects: {}

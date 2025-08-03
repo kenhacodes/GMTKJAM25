@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f37b76343161434f87496f40052a927, type: 3}
   m_Name: EnemyMoveSet
   m_EditorClassIdentifier: 
-  movements_: []
+  movements_:
+  - action_: 5
+    execTime_: 0
+  - action_: 2
+    execTime_: 0
+  - action_: 6
+    execTime_: 0
+  - action_: 1
+    execTime_: 0

@@ -46,17 +46,17 @@ public class MainMenuUI : MonoBehaviour
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("LevelCatbot");
+        SceneManager.LoadScene("BlockTest");
     }
 
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Nivel2");
+        //SceneManager.LoadScene("Nivel2");
     }
 
     public void LoadLevel3()
     {
-        SceneManager.LoadScene("Nivel3");
+        //SceneManager.LoadScene("Nivel3");
     }
 
     public void QuitGame()

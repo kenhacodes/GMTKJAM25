@@ -133,7 +133,7 @@ public class RobotController : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = health / maxHealth;
-
+    /*
         if (player)
         {
             //Testing
@@ -152,6 +152,7 @@ public class RobotController : MonoBehaviour
                 LookAtEnemy();
             }
         }
+    */
     }
 
     // Programmable Actions

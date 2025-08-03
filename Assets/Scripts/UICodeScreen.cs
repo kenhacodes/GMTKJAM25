@@ -26,6 +26,6 @@ public class UICodeScreen : MonoBehaviour
 
     public void GoToEditor()
     {
-        SceneManager.LoadScene("CharacterEditor");
+        SceneManager.LoadScene("LevelCatBot");
     }
 }

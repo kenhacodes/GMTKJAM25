@@ -15,11 +15,7 @@ MonoBehaviour:
   movements_:
   - action_: 2
     execTime_: 0
-  - action_: 9
+  - action_: 6
     execTime_: 0
-  - action_: 10
-    execTime_: 0
-  - action_: 2
-    execTime_: 0
-  - action_: 9
+  - action_: 12
     execTime_: 0
