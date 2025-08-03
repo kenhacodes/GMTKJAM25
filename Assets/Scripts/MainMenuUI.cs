@@ -46,7 +46,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("Nivel1");
+        SceneManager.LoadScene("LevelCatbot");
     }
 
     public void LoadLevel2()

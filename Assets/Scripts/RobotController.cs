@@ -341,7 +341,7 @@ public class RobotController : MonoBehaviour
         if (isInvincible) return;
         animator.Play("Damage_animation");
         Invoke(nameof(ReturnToIdle), 1.0f);
-        
+
         health -= damage;
         health = Mathf.Max(0.0f, health);
 
