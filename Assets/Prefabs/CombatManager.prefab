@@ -98,7 +98,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7887321611170238508
 RectTransform:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   heightCameraOffsetRingCinematic: 8
   timeToCompleteRingCinematicSeconds: 5
   cameraRadius: 14
-  combatCameraTimeToComplete: 10
+  combatCameraTimeToComplete: 12
   RobotPrefab: {fileID: 3050662606517954773, guid: 125621a83711bb84aac8b5994301cca0,
     type: 3}
   playerStartPosition: {x: 0, y: 0, z: 0}
@@ -352,6 +352,11 @@ MonoBehaviour:
   panelVSScreen: {fileID: 8544320091297987005}
   panelCombat: {fileID: 9099846135052036855}
   panelEndCombat: {fileID: 2042825347813638847}
+  soundFXObject: {fileID: 6973244216701674512, guid: f01cdbac8915fce49a5cfa0007e118bf,
+    type: 3}
+  backgroundSounds:
+  - {fileID: 8300000, guid: 4f88fe4c366c79b4bad2efe32639fa9a, type: 3}
+  - {fileID: 8300000, guid: ab0ff34dd7d71cb4e90aaf950a8a18d4, type: 3}
   endCombatText: {fileID: 0}
   currentCombatState: 0
 --- !u!1 &3863058209718630454
@@ -646,8 +651,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d7de3d338b97da24384ec6038e176cbc, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -840,7 +845,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -49.73169}
+  m_margin: {x: -860.09174, y: 0, z: -860.3009, w: -49.73169}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

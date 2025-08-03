@@ -42,6 +42,8 @@ public class CombatManager : MonoBehaviour
     public GameObject panelCombat;
     public GameObject panelEndCombat;
 
+    [SerializeField] private AudioSource soundFXObject;
+    public AudioClip[] backgroundSounds;
     private SoundManager _soundManager;
 
     [SerializeField] public TMP_Text endCombatText;
@@ -78,8 +80,13 @@ public class CombatManager : MonoBehaviour
         EnemyRobot.player = false;
         EnemyRobot.InitRobot();
 
+        EnemyRobot.tr.LookAt(PlayerRobot.tr);
+        PlayerRobot.tr.LookAt(EnemyRobot.tr);
+
         combatImages = panelCombat.GetComponentsInChildren<Image>();
 
+        StartCoroutine(PlayGeneralCrowd(true));
+        StartCoroutine(PlayStompSfx(9.0f));
 
         UpdateUIPanels();
     }
@@ -113,7 +120,7 @@ public class CombatManager : MonoBehaviour
         }
 
         UpdateUIPanels();
-        
+
         // Sound Update
         PlayerRobot.SFXSoundLevelVolume = _soundManager.masterVolume * _soundManager.sfxVolume;
         EnemyRobot.SFXSoundLevelVolume = _soundManager.masterVolume * _soundManager.sfxVolume;
@@ -135,10 +142,68 @@ public class CombatManager : MonoBehaviour
         combatStarted = false;
         currentCombatState = CombatSceneFlow.EndCombatScreen;
         clockText.text = "";
-        //camera.fieldOfView = 60.0f;
+
         UpdateUIPanels();
 
+        EnemyRobot.rb.velocity = Vector3.zero;
+        PlayerRobot.rb.velocity = Vector3.zero;
+        EnemyRobot.rb.angularVelocity = Vector3.zero;
+        PlayerRobot.rb.angularVelocity = Vector3.zero;
+        
+        _soundManager.PlayMusic(_soundManager.musicLibrary[4]);
+
+        if (playerWins)
+        {
+            FindTaggedChild(EnemyRobot.transform, "RobotModel").gameObject.SetActive(false);
+        }
+        else
+        {
+            FindTaggedChild(PlayerRobot.transform, "RobotModel").gameObject.SetActive(false);
+        }
+
         StartCoroutine(EndMatchAnimation());
+    }
+
+    private IEnumerator PlayGeneralCrowd(bool fade)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+        audioSource.clip = backgroundSounds[0];
+        audioSource.pitch = Random.Range(audioSource.pitch - 0.05f, audioSource.pitch + 0.05f);
+
+        float finalVolume = _soundManager.bgSfxVolume * _soundManager.masterVolume * 0.7f;
+
+        if (fade)
+        {
+            audioSource.volume = 0f;
+            audioSource.Play();
+            audioSource.DOFade(finalVolume, 3.0f); // Adjust fade duration as needed
+        }
+        else
+        {
+            audioSource.volume = finalVolume;
+            audioSource.Play();
+        }
+
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+
+        yield return new WaitForSeconds(clipLength * 0.9f);
+        StartCoroutine(PlayGeneralCrowd(false));
+    }
+
+    private IEnumerator PlayStompSfx(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("stomp!");
+        AudioSource audioSource = Instantiate(soundFXObject, transform.position, Quaternion.identity);
+        audioSource.clip = backgroundSounds[1];
+        audioSource.pitch = Random.Range(audioSource.pitch, audioSource.pitch);
+        audioSource.volume = _soundManager.bgSfxVolume * _soundManager.masterVolume;
+        float clipLength = audioSource.clip.length;
+        audioSource.Play();
+        Destroy(audioSource.gameObject, clipLength);
+        float nexttime = Random.Range(6f, 15f);
+        StartCoroutine(PlayStompSfx(nexttime));
     }
 
     private IEnumerator EndMatchAnimation()
@@ -146,11 +211,11 @@ public class CombatManager : MonoBehaviour
         while (currentCombatState == CombatSceneFlow.EndCombatScreen)
         {
             // Get winner's position (updated each frame)
-            Vector3 positionWinner = playerWins ? EnemyRobot.tr.position : PlayerRobot.tr.position;
+            Vector3 positionWinner = playerWins ? PlayerRobot.tr.position : EnemyRobot.tr.position;
             positionWinner += Vector3.up * 0.7f;
 
             // Calculate dynamic target camera position behind winner
-            Vector3 forwardDir = playerWins ? EnemyRobot.tr.forward : PlayerRobot.tr.forward;
+            Vector3 forwardDir = playerWins ? PlayerRobot.tr.forward : EnemyRobot.tr.forward;
             Vector3 targetCameraPos = positionWinner + (forwardDir * 4.0f) - Vector3.up * 0.4f;
 
             camera.fieldOfView = 40.0f;
@@ -160,8 +225,8 @@ public class CombatManager : MonoBehaviour
 
             // Smoothly interpolate toward position and rotation
             camera.transform.position =
-                Vector3.Lerp(camera.transform.position, targetCameraPos, Time.deltaTime * 20.0f);
-            camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, targetRot, Time.deltaTime * 10.0f);
+                Vector3.Lerp(camera.transform.position, targetCameraPos, Time.deltaTime * 2.0f);
+            camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, targetRot, Time.deltaTime * 1.0f);
 
             yield return null;
         }
@@ -395,7 +460,7 @@ public class CombatManager : MonoBehaviour
         currentCombatState = CombatSceneFlow.CinematicVS;
         UpdateUIPanels();
         StartCoroutine(VSAnimation());
-        _soundManager.PlayMusic(_soundManager.musicLibrary[1]);
+        _soundManager.PlayMusic(_soundManager.musicLibrary[2]);
     }
 
 

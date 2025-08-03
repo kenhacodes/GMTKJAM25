@@ -14,7 +14,6 @@ public class SoundManager : MonoBehaviour
     [Range(0f, 1f)] public float musicVolume = 1f;
     [Range(0f, 1f)] public float sfxVolume = 1f;
     [Range(0f, 1f)] public float bgSfxVolume = 1f;
-
     
     [Header("Music Library")]
     public AudioClip[] musicLibrary; 
@@ -30,7 +29,6 @@ public class SoundManager : MonoBehaviour
     private const string SFXKey = "SFXVolume";
     private const string BGSFXKey = "BackgroundEffectsVolume";
     
-
     private void Awake()
     {
         if (Instance != null && Instance != this)

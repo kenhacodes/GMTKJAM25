@@ -38,7 +38,6 @@ public class RobotController : MonoBehaviour
     public Rigidbody rb;
     public float moveImpulse = 6.0f;
 
-
     private GameObject enemyRobot;
 
     public BoxCollider hurtboxTop;
@@ -50,7 +49,11 @@ public class RobotController : MonoBehaviour
     public BoxCollider hitBoxLeft;
     public BoxCollider hitBoxRight;
 
+    public bool smoking = false;
     public ParticleSystem vfx_sparks;
+    public ParticleSystem vfx_smoke;
+    public ParticleSystem vfx_explosion;
+
 
     public Transform tr_key;
     private float tr_key_currentRotationX = 0f;
@@ -61,6 +64,8 @@ public class RobotController : MonoBehaviour
     public AudioClip[] soundsDamageColision;
     public AudioClip[] soundsWhoosh;
     public AudioClip[] soundsNormalColision;
+    public AudioClip explosionRobotSound;
+
 
     public enum Directions
     {
@@ -134,7 +139,6 @@ public class RobotController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 RobotKeyRotation();
-                //LookAtEnemy();
                 //JumpFront();
                 AttackNormal();
                 LookAtEnemy();
@@ -144,6 +148,7 @@ public class RobotController : MonoBehaviour
             {
                 RobotKeyRotation();
                 MoveRobot(Directions.Backwards);
+                LookAtEnemy();
             }
         }
     }
@@ -177,8 +182,7 @@ public class RobotController : MonoBehaviour
             }
         }
 
-
-        if (tr.position.y < floorHeight + 1.5f) dir.y = 0.33f;
+        if (tr.position.y < floorHeight + 2.5f) dir.y = 0.5f;
 
         rb.AddForce(dir * moveImpulse, ForceMode.Impulse);
     }
@@ -247,6 +251,15 @@ public class RobotController : MonoBehaviour
     }
 
     // Other functions
+
+    public void StartSmoking()
+    {
+        if (smoking) return;
+        smoking = true;
+        vfx_smoke.Play();
+        StartCoroutine(PlaySparkVFX(1.0f));
+    }
+
     public void RobotKeyRotation()
     {
         if (keyrotationTween != null && keyrotationTween.IsActive())
@@ -277,6 +290,14 @@ public class RobotController : MonoBehaviour
         }
     }
 
+    public void PlayBoingSound()
+    {
+        if (soundsNormalColision.Length > 0)
+        {
+            PlaysSound(soundsNormalColision[Random.Range(0, soundsNormalColision.Length - 1)], 0.2f, 0.5f);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Hurtbox"))
@@ -287,7 +308,7 @@ public class RobotController : MonoBehaviour
             var enemy = other.GetComponentInParent<RobotController>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10.0f, currentKnockback, currentYKnockback);
+                enemy.TakeDamage(5.0f, currentKnockback, currentYKnockback);
                 StartCoroutine(enemy.ImpactFrame());
                 StartCoroutine(ImpactFrame());
             }
@@ -307,10 +328,20 @@ public class RobotController : MonoBehaviour
         StartCoroutine(ActivateInvincibility());
         finalKnockbackAfterTheImpactFrameBecauseICan = knockback_dir * knockbackForce;
         vfx_sparks.Play();
+
+        if (health < maxHealth * 0.33f) StartSmoking();
         if (soundsDamageColision.Length > 0)
         {
             PlaysSound(soundsDamageColision[Random.Range(0, soundsDamageColision.Length - 1)], 0.15f, 1.0f);
         }
+
+        if (health <= 0.0f) Death();
+    }
+
+    public void Death()
+    {
+        PlaysSound(explosionRobotSound, 0.0f, 1.0f);
+        vfx_explosion.Play();
     }
 
     public void LookAtEnemy()
@@ -391,5 +422,13 @@ public class RobotController : MonoBehaviour
         currentKnockback = amount;
         yield return new WaitForSeconds(time);
         currentKnockback = normalKnockback;
+    }
+
+    private IEnumerator PlaySparkVFX(float time)
+    {
+        yield return new WaitForSeconds(time);
+        vfx_sparks.Play();
+        float nexttime = Random.Range(0.5f, 3f);
+        StartCoroutine(PlaySparkVFX(nexttime));
     }
 }

@@ -26,6 +26,12 @@ public class WallKnockback : MonoBehaviour
                 //Debug.Log("wall "+ this.gameObject.name + ", robot: " + robot.gameObject.name + " -> dir : " + dir);
                 robot.velocity = Vector3.zero;
                 robot.AddForce(dir, ForceMode.Impulse);
+                RobotController controller = other.GetComponentInParent<RobotController>();
+                if (controller != null)
+                {
+                    controller.PlayBoingSound();
+                }
+                
                 dir = Vector3.zero;
             }
         }
