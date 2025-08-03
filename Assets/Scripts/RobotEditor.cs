@@ -4,130 +4,123 @@ using UnityEngine;
 
 public class RobotCustomizer : MonoBehaviour
 {
-    [Header("Slots")]
-        public Transform headSlot;
-        public Transform trunkSlot;
-        public Transform armsSlot;
-        public Transform legsSlot;
-        public Transform keySlot;
+    [Header("Slots (Padres opcionales, no usados en esta versión)")]
+    public Transform headSlot;
+    public Transform trunkSlot;
+    public Transform armsSlot;
+    public Transform legsSlot;
+    public Transform keySlot;
 
-        [Header("Parts")]
-        public GameObject[] headOptions;
-        public GameObject[] trunkOptions;
-        public GameObject[] armOptions;
-        public GameObject[] legOptions;
-        public GameObject[] keyOptions;
+    [Header("Parts (Todos los modelos ya deben estar en la escena como hijos del robot y desactivados)")]
+    public GameObject[] headOptions;
+    public GameObject[] trunkOptions;
+    public GameObject[] armOptions;
+    public GameObject[] legOptions;
+    public GameObject[] keyOptions;
 
-        private GameObject currentHead;
-        private GameObject currentTrunk;
-        private GameObject currentArms;
-        private GameObject currentLegs;
-        private GameObject currentKey;
+    private int headIndex = 0, trunkIndex = 0, armsIndex = 0, legsIndex = 0, keyIndex = 0;
 
-        private int headIndex = 0, trunkIndex = 0, armsIndex = 0, legsIndex = 0, keyIndex = 0;
+    public enum PartType { Head, Trunk, Arms, Legs, Key }
 
-        public enum PartType { Head, Trunk, Arms, Legs, Key }
+    void Start()
+    {
+        UpdateAllParts();
+    }
 
-        void Start()
+    public void PreviousHead()
+    {
+        headIndex = (headIndex - 1 + headOptions.Length) % headOptions.Length;
+        ActivatePart(headOptions, headIndex);
+    }
+
+    public void PreviousTrunk()
+    {
+        trunkIndex = (trunkIndex - 1 + trunkOptions.Length) % trunkOptions.Length;
+        ActivatePart(trunkOptions, trunkIndex);
+    }
+
+    public void PreviousArms()
+    {
+        armsIndex = (armsIndex - 1 + armOptions.Length) % armOptions.Length;
+        ActivatePart(armOptions, armsIndex);
+    }
+
+    public void PreviousLegs()
+    {
+        legsIndex = (legsIndex - 1 + legOptions.Length) % legOptions.Length;
+        ActivatePart(legOptions, legsIndex);
+    }
+
+    public void PreviousKey()
+    {
+        keyIndex = (keyIndex - 1 + keyOptions.Length) % keyOptions.Length;
+        ActivatePart(keyOptions, keyIndex);
+    }
+
+    public void NextHead()
+    {
+        headIndex = (headIndex + 1) % headOptions.Length;
+        ActivatePart(headOptions, headIndex);
+    }
+
+    public void NextTrunk()
+    {
+        trunkIndex = (trunkIndex + 1) % trunkOptions.Length;
+        ActivatePart(trunkOptions, trunkIndex);
+    }
+
+    public void NextArms()
+    {
+        armsIndex = (armsIndex + 1) % armOptions.Length;
+        ActivatePart(armOptions, armsIndex);
+    }
+
+    public void NextLegs()
+    {
+        legsIndex = (legsIndex + 1) % legOptions.Length;
+        ActivatePart(legOptions, legsIndex);
+    }
+
+    public void NextKey()
+    {
+        keyIndex = (keyIndex + 1) % keyOptions.Length;
+        ActivatePart(keyOptions, keyIndex);
+    }
+
+    private void ActivatePart(GameObject[] options, int activeIndex)
+    {
+        for (int i = 0; i < options.Length; i++)
         {
-            UpdateAllParts();
+            if (options[i] != null)
+                options[i].SetActive(i == activeIndex);
         }
+    }
 
-        public void PreviousHead()
+    private void UpdateAllParts()
+    {
+        ActivatePart(headOptions, headIndex);
+        ActivatePart(trunkOptions, trunkIndex);
+        ActivatePart(armOptions, armsIndex);
+        ActivatePart(legOptions, legsIndex);
+        ActivatePart(keyOptions, keyIndex);
+    }
+
+    public string GetCurrentPartName(PartType part)
+    {
+        switch (part)
         {
-            headIndex = (headIndex - 1 + headOptions.Length) % headOptions.Length;
-            ReplacePart(ref currentHead, headOptions[headIndex], headSlot);
+            case PartType.Head:
+                return headOptions[headIndex].name;
+            case PartType.Trunk:
+                return trunkOptions[trunkIndex].name;
+            case PartType.Arms:
+                return armOptions[armsIndex].name;
+            case PartType.Legs:
+                return legOptions[legsIndex].name;
+            case PartType.Key:
+                return keyOptions[keyIndex].name;
+            default:
+                return "";
         }
-
-        public void PreviousTrunk()
-        {
-            trunkIndex = (trunkIndex - 1 + trunkOptions.Length) % trunkOptions.Length;
-            ReplacePart(ref currentTrunk, trunkOptions[trunkIndex], trunkSlot);
-        }
-
-        public void PreviousArms()
-        {
-            armsIndex = (armsIndex - 1 + armOptions.Length) % armOptions.Length;
-            ReplacePart(ref currentArms, armOptions[armsIndex], armsSlot);
-        }
-
-        public void PreviousLegs()
-        {
-            legsIndex = (legsIndex - 1 + legOptions.Length) % legOptions.Length;
-            ReplacePart(ref currentLegs, legOptions[legsIndex], legsSlot);
-        }
-
-        public void PreviousKey()
-        {
-            keyIndex = (keyIndex - 1 + keyOptions.Length) % keyOptions.Length;
-            ReplacePart(ref currentKey, keyOptions[keyIndex], keySlot);
-        }
-
-        public void NextHead()
-        {
-            headIndex = (headIndex + 1) % headOptions.Length;
-            ReplacePart(ref currentHead, headOptions[headIndex], headSlot);
-        }
-
-        public void NextTrunk()
-        {
-            trunkIndex = (trunkIndex + 1) % trunkOptions.Length;
-            ReplacePart(ref currentTrunk, trunkOptions[trunkIndex], trunkSlot);
-        }
-
-        public void NextArms()
-        {
-            armsIndex = (armsIndex + 1) % armOptions.Length;
-            ReplacePart(ref currentArms, armOptions[armsIndex], armsSlot);
-        }
-
-        public void NextLegs()
-        {
-            legsIndex = (legsIndex + 1) % legOptions.Length;
-            ReplacePart(ref currentLegs, legOptions[legsIndex], legsSlot);
-        }
-
-        public void NextKey()
-        {
-            keyIndex = (keyIndex + 1) % keyOptions.Length;
-            ReplacePart(ref currentKey, keyOptions[keyIndex], keySlot);
-        }
-
-        private void ReplacePart(ref GameObject currentPart, GameObject newPartPrefab, Transform parent)
-        {
-            if (currentPart != null)
-                Destroy(currentPart);
-
-            currentPart = Instantiate(newPartPrefab, parent);
-            currentPart.transform.localPosition = Vector3.zero;
-            currentPart.transform.localRotation = Quaternion.identity;
-        }
-
-        private void UpdateAllParts()
-        {
-            NextHead();
-            NextTrunk();
-            NextArms();
-            NextLegs();
-            NextKey();
-        }
-
-        public string GetCurrentPartName(PartType part)
-        {
-            switch (part)
-            {
-                case PartType.Head:
-                    return headOptions[headIndex].name;
-                case PartType.Trunk:
-                    return trunkOptions[trunkIndex].name;
-                case PartType.Arms:
-                    return armOptions[armsIndex].name;
-                case PartType.Legs:
-                    return legOptions[legsIndex].name;
-                case PartType.Key:
-                    return keyOptions[keyIndex].name;
-                default:
-                    return "";
-            }
-        }
+    }
 }

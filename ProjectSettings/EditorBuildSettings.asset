@@ -6,11 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: f931ef955065f594ca9e41ac7b24e389
+=======
+    path: Assets/Scenes/MainMenu.unity
+    guid: f931ef955065f594ca9e41ac7b24e389
+  - enabled: 1
+    path: Assets/Scenes/CombatTestingScene.unity
+    guid: a4251b6fa988699439509472c05d27b6
+>>>>>>> Stashed changes
   - enabled: 1
     path: Assets/Scenes/CharacterEditor.unity
     guid: 64f087ecc5e89734abce8b275a9b78fd
